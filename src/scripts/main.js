@@ -64,7 +64,7 @@ function hydrateStore() {
   if (addressValue) addressValue.textContent = addressDisplay();
 
   document.querySelectorAll('[data-store-hours]').forEach((el) => {
-    el.textContent = hoursDisplay();
+    if (STORE.hoursVerified && STORE.hours) el.textContent = hoursDisplay();
   });
 
   const reviewStatus = document.querySelector('[data-review-status]');

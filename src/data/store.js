@@ -31,8 +31,8 @@ export const SITE = {
   indexingEnabled: false,
   title: 'Vape N More — Kirbyville, Texas | Vape & Smoke Shop Preview',
   description:
-    'A location-specific website preview for a vape and smoke shop serving Kirbyville, Texas. ' +
-    'Disposables, e-liquids, glass, and rolling supplies. In-store shopping, 21+.',
+    'An age-restricted business-information preview for Vape N More in Kirbyville, Texas. ' +
+    'Location, contact details and verification status. For adults 21+.',
   ogImage: 'assets/og-image.png',
   ogImageAlt:
     'Dark, neon-lit preview artwork for a Kirbyville, Texas vape and smoke shop website.',

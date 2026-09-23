@@ -1,219 +1,106 @@
-/* ==========================================================================
-   responsive.css — breakpoint ladder (mobile is a primary target)
-   verified at: 360 · 390 · 430 · 768 · 1024 · 1440+
-   ========================================================================== */
-
-/* --------------------------- ≤ 1199px (laptop) --------------------------- */
-@media (max-width: 1199px) {
-  :root {
-    --container: 1080px;
-  }
+/* Mobile reflows intentionally; no cropped desktop canvas or horizontal carousel. */
+@media(min-width:1600px) { .hero { min-height:650px; } }
+@media(max-width:1199px) {
+ .brand__name { font-size:40px; } .brand__place { font-size:8px; letter-spacing:3px; }
+ .site-nav__list { gap:20px; } .place-badge { display:none; }
+ .hero { padding:112px 0 52px; min-height:480px; } .hero__title { font-size:4.8vw; }
+ .hero__lede { font-size:17px; } .hero__cta { gap:12px; } .btn { padding:12px 16px; font-size:14px; }
+ .stage { max-width:310px; } .stage__texas { width:84px; height:84px; margin:12px 0; } .stage__city { font-size:28px; }
+ .stage__frame { padding:24px; } .stage__frame>span { line-height:1.2; } .stage__rule { margin:14px 0; }
+ .hero__lede { margin-top:14px; } .hero__cta { margin-top:20px; } .hero__note { margin-top:12px; }
+ .information { padding:18px 0; } .info-card__body { min-height:100px; padding-top:12px; }
+ .about { min-height:220px; padding:24px 0; } .facts-grid { margin-top:20px; }
+ .reviews { padding:24px 0; } .review-card { min-height:144px; padding:16px 20px; }
+ .location { padding:24px 0; } .location-panel { min-height:200px; }
+ .info-card h3 { font-size:15px; } .info-card p { font-size:12px; } .info-card__art-label { font-size:7px; letter-spacing:1px; }
+ h2 { font-size:34px; } .facts-grid { max-width:none; } .landscape-label { display:none; }
+ .facts-grid h3 { font-size:16px; } .facts-grid p { font-size:13px; }
+ .site-footer__row { flex-wrap:wrap; } .footer-age { padding-left:0; border:0; }
 }
-
-/* --------------------- ≤ 1023px (tablet landscape) ---------------------- */
-@media (max-width: 1023px) {
-  .hero {
-    min-height: auto;
-    padding-block: clamp(6rem, 12vh, 7.5rem) clamp(3.5rem, 7vh, 5rem);
-  }
-
-  .hero__grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: clamp(2.5rem, 6vw, 3.5rem);
-  }
-
-  .hero__visual {
-    max-width: 520px;
-    margin-inline: auto;
-    width: 100%;
-  }
-
-  .hero__lede {
-    max-width: 60ch;
-  }
-
-  .split {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .site-footer__grid {
-    grid-template-columns: 1fr 1fr;
-  }
+@media(max-width:979px) {
+ :root { --header-h:88px; }
+ .menu-toggle { display:flex; }
+ .site-nav { position:absolute; inset:var(--header-h) 0 auto; background:#061418fa; padding:16px 6%; border-bottom:1px solid #46676b; visibility:hidden; opacity:0; transform:translateY(-8px); transition:opacity .2s,transform .2s,visibility .2s; max-height:calc(100svh - var(--header-h)); overflow:auto; }
+ .site-nav.is-open { visibility:visible; opacity:1; transform:none; }
+ .site-nav__list { flex-direction:column; gap:0; }
+ .site-nav a { min-height:48px; border-bottom:1px solid #223c41; font-size:16px; }
+ .site-nav a.is-active::after { display:none; }
+ html.is-menu-open,html.is-menu-open body { overflow:hidden; }
+ .hero { padding-top:132px; } .hero__grid { grid-template-columns:1.25fr .75fr; }
+ .hero__title { font-size:4.9vw; letter-spacing:-1.2px; }
+ .hero .eyebrow { font-size:9px; letter-spacing:1.5px; } .stage { padding:0 4px; }
+ .stage__frame { padding:24px 12px; } .stage__city { font-size:23px; } .stage__state { font-size:12px; }
+ .stage__overline { font-size:9px; letter-spacing:3px; } .stage__caption { font-size:15px; }
+ .information__grid { grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px; }
+ .info-card { grid-column:span 2; } .info-card:nth-child(4) { grid-column:2 / span 2; }
+ .info-card__art { aspect-ratio:1.6; } .info-card h3 { font-size:18px; } .info-card p { font-size:13px; }
+ .facts-grid { gap:16px; } .facts-grid article { padding-left:12px; }
+ .section-heading { align-items:start; } .section-heading .status { font-size:10px; }
+ .review-card { padding:16px; } .review-card h3 { font-size:16px; } .review-card p { font-size:13px; }
+ .location__grid { gap:24px; } .location h2 { font-size:30px; } .location__copy { font-size:14px; }
+ .location-panel { min-height:240px; } .location-panel__state { padding:12px; }
+ .contact__grid { grid-template-columns:1fr 2fr; } .closing-greeting { grid-column:1 / -1; text-align:center; }
 }
-
-/* ------------------------ ≤ 979px (tablet portrait) ---------------------- */
-@media (max-width: 979px) {
-  .menu-toggle {
-    display: inline-flex;
-  }
-
-  .site-nav {
-    position: fixed;
-    inset: var(--header-h) 0 auto 0;
-    max-height: calc(100svh - var(--header-h));
-    overflow-y: auto;
-    padding: var(--space-4) clamp(1.25rem, 4vw, 2.5rem) var(--space-6);
-    background: rgba(5, 7, 10, 0.97);
-    border-bottom: 1px solid var(--line);
-    backdrop-filter: blur(18px) saturate(1.2);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition:
-      opacity var(--dur-base) var(--ease-out),
-      transform var(--dur-base) var(--ease-out),
-      visibility 0s linear var(--dur-base);
-  }
-
-  .site-nav.is-open {
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    transition-delay: 0s;
-  }
-
-  .site-nav__list {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
-
-  .site-nav a {
-    display: block;
-    padding: 0.95rem 0.25rem;
-    font-size: 1.05rem;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .site-nav a::after {
-    display: none;
-  }
-
-  html.is-menu-open,
-  html.is-menu-open body {
-    overflow: hidden;
-  }
-
-  .detail-list {
-    max-width: none;
-  }
+@media(max-width:599px) {
+ :root { --header-h:80px; }
+ .container { padding-inline:22px; } .brand__name { font-size:30px; letter-spacing:-1.5px; } .brand__place { margin-top:9px; font-size:7px; letter-spacing:3px; }
+ .hero { padding:112px 0 32px; } .hero__grid { grid-template-columns:minmax(0,1fr); gap:36px; }
+ .hero__title { font-size:clamp(29px,8.2vw,46px); line-height:1.08; letter-spacing:-1.3px; }
+ .hero .eyebrow { font-size:8px; letter-spacing:1.6px; margin-bottom:14px; }
+ .hero__lede { font-size:16px; margin-top:18px; max-width:37ch; }
+ .hero__cta { gap:10px; margin-top:24px; } .hero__cta .btn { min-height:60px; gap:8px; padding:12px 10px; flex:1 1 auto; font-size:12px; }
+ .btn .icon { width:20px; height:20px; } .btn small { font-size:10px; }
+ .hero__note { font-size:11px; } .hero__landscape { background-position:60% bottom; background-size:auto 75%; }
+ .hero .motion-toggle { position:static; margin-bottom:-20px; }
+ .stage { width:240px; transform:rotate(-3deg); } .stage__frame { padding:20px; } .stage__texas { width:84px; height:84px; margin:12px 0; }
+ .stage__city { font-size:27px; } .stage__state { font-size:12px; } .stage__rule { margin:12px 0; } .stage figcaption { font-size:8px; margin-top:16px; }
+ .information { padding:20px 0 28px; } .information__grid { width:calc(100% - 32px); grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+ .info-card { grid-column:auto; padding:8px; border-radius:12px; } .info-card:nth-child(4) { grid-column:auto; }
+ .info-card:last-child { grid-column:1 / -1; } .info-card:last-child>a { display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:center; }
+ .info-card__art { aspect-ratio:1.25; } .info-card__symbol { width:56px; height:56px; } .info-card__art-label { bottom:10px; font-size:6px; }
+ .info-card__number { top:10px; left:10px; font-size:8px; } .info-card__body { min-height:145px; padding:14px 2px 28px; }
+ .info-card h3 { font-size:16px; } .info-card p { font-size:12px; padding-right:0; } .info-card:last-child .info-card__body { min-height:125px; }
+ .about,.reviews,.location { padding:32px 0; } h2 { font-size:30px; letter-spacing:-.8px; } .eyebrow { font-size:9px; letter-spacing:2px; }
+ .facts-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 16px; margin-top:24px; }
+ .facts-grid h3 { font-size:16px; } .facts-grid p { font-size:13px; } .facts-grid .icon { width:30px; height:30px; }
+ .section-heading { display:block; } .section-heading .status { margin-top:16px; }
+ .reviews-grid { grid-template-columns:1fr; gap:12px; } .review-card { padding:20px; min-height:150px; }
+ .review-card p { max-width:32ch; font-size:14px; } .review-card h3 { font-size:18px; }
+ .location__grid { grid-template-columns:1fr; gap:24px; } .location h2 { font-size:30px; } .location__copy { font-size:15px; }
+ .location-panel { width:100%; max-width:none; min-height:210px; }
+ .contact { padding:28px 0; } .contact__grid { grid-template-columns:1fr; gap:20px; } .contact dl { grid-template-columns:1fr 1fr; }
+ .closing-greeting { border-top:1px solid #2e494d; padding-top:24px; margin-top:8px; font-size:24px; }
+ .site-footer { padding:32px 0 24px; } .site-footer__row { display:grid; gap:24px; } .site-footer .brand__name { font-size:34px; }
+ .site-footer ul { display:grid; grid-template-columns:repeat(3,1fr); gap:0 24px; } .site-footer__fine { margin-top:24px; font-size:10px; }
 }
-
-/* --------------------------- ≤ 767px (mobile L) -------------------------- */
-@media (max-width: 767px) {
-  :root {
-    --header-h: 64px;
-    --section-y: clamp(3.75rem, 9vw, 5rem);
-  }
-
-  .brand__name {
-    font-size: 0.98rem;
-  }
-
-  .hero__title {
-    letter-spacing: -0.026em;
-  }
-
-  .hero__cta .btn {
-    flex: 1 1 auto;
-  }
-
-  .hero__visual {
-    max-width: 440px;
-  }
-
-  .detail {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.3rem;
-  }
-
-  .section__footnote {
-    align-items: flex-start;
-  }
-
-  .site-footer__grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
+/* Without JS, navigation and every section remain usable. */
+/* At the reference's 1055px width, retain its compact desktop section rhythm. */
+@media(min-width:980px) and (max-width:1199px) {
+ .hero { min-height:444px; padding:100px 0 32px; }
+ .hero__lede { font-size:16px; line-height:1.4; }
+ .hero__cta .btn { min-height:52px; padding:8px 16px; }
+ .hero__note { font-size:10px; margin-top:10px; }
+ .stage__texas { width:68px; height:68px; }
+ .stage__frame { padding:20px; }
+ .information { padding:18px 0; }
+ .about { min-height:219px; padding:20px 0; }
+ .facts-grid { margin-top:16px; }
+ .facts-grid .icon { width:30px; height:30px; margin-bottom:8px; }
+ .reviews { padding:18px 0; }
+ .section-heading { margin-bottom:12px; }
+ .review-card { min-height:126px; padding:14px 18px; }
+ .review-card h3 { font-size:16px; margin:6px 0; }
+ .review-card p { font-size:13px; line-height:1.4; }
+ .location { padding:18px 0; }
+ .location h2 { font-size:32px; }
+ .location__copy { font-size:14px; margin-top:8px; }
+ .location .hero__cta { margin-top:16px; }
+ .location-panel { min-height:190px; }
+ .contact { padding:22px 0; }
+ .closing-greeting { font-size:22px; }
+ .site-footer { padding:28px 0 16px; }
+ .site-footer__fine { margin-top:20px; padding-top:12px; font-size:9px; }
 }
-
-/* ---------------------------- ≤ 519px (mobile) --------------------------- */
-@media (max-width: 519px) {
-  .site-header__actions .btn {
-    display: none;
-  }
-
-  .hero__note {
-    font-size: 0.78rem;
-  }
-
-  .stage__caption {
-    font-size: 0.58rem;
-  }
-
-  .review-source {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-/* ---------------------------- ≤ 429px (small) ---------------------------- */
-@media (max-width: 429px) {
-  .hero {
-    padding-block: 5.75rem 3.25rem;
-  }
-
-  .hero__cta {
-    gap: 0.65rem;
-  }
-
-  .hero__cta .btn {
-    width: 100%;
-  }
-
-  .hero__visual {
-    max-width: 360px;
-  }
-
-  .map-panel__meta {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .card {
-    padding: 1.35rem 1.2rem 1.4rem;
-  }
-}
-
-/* ------------------------- ≤ 359px (very small) -------------------------- */
-@media (max-width: 359px) {
-  .container {
-    padding-inline: 1rem;
-  }
-
-  .hero__visual {
-    max-width: 320px;
-  }
-
-  .brand__place {
-    display: none;
-  }
-}
-
-/* ---------------------- pointer / hover capability gates ----------------- */
-@media (hover: none) {
-  .card:hover {
-    transform: none;
-  }
-
-  .card::after {
-    display: none;
-  }
-}
-
-/* ------------------------------ large desktop ---------------------------- */
-@media (min-width: 1440px) {
-  :root {
-    --container: 1240px;
-  }
-}
+@media(max-width:979px) { html:not(.js) .site-header { position:relative; } html:not(.js) .site-header__bar { height:auto; flex-wrap:wrap; padding-block:20px; } html:not(.js) .site-nav { position:static; visibility:visible; opacity:1; transform:none; order:3; width:100%; } html:not(.js) .site-nav__list { flex-direction:row; flex-wrap:wrap; gap:0 24px; } html:not(.js) .menu-toggle { display:none; } html:not(.js) .hero { padding-top:32px; } }
+@media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; } }
+@media print { .site-header { position:static !important; } .hero { padding-top:24px; } .menu-toggle { display:none; } }

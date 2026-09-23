@@ -38,7 +38,7 @@
   /* ---------- accents (restrained) ---------- */
   --accent-200: #b9f7ee;
   --accent-300: #7ff0e4;
-  --accent-400: #46e0cf;
+  --accent-400: #42e8c6;
   --accent-500: #22c9bd;
   --accent-600: #14a89e;
   --accent-ink: #04211e;
@@ -105,8 +105,8 @@
   --dur-slow: 620ms;
 
   /* ---------- layout ---------- */
-  --container: 1200px;
-  --header-h: 72px;
+  --container: 1360px;
+  --header-h: 104px;
   --section-y: clamp(4.5rem, 8.5vw, 7.5rem);
 
   /* ---------- z-index ---------- */

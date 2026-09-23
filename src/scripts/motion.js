@@ -195,7 +195,6 @@ export function initParallax(el) {
  */
 export function initVapor(canvas) {
   if (!canvas || !canvas.getContext) return;
-  if (reduceMotionQuery().matches) return;
 
   const ctx = canvas.getContext('2d', { alpha: true });
   if (!ctx) return;
@@ -215,6 +214,21 @@ export function initVapor(canvas) {
     grad.addColorStop(0, `${rgb}0.5)`);
     grad.addColorStop(0.45, `${rgb}0.16)`);
     grad.addColorStop(1, `${rgb}0)`);
+    sctx.fillStyle = grad;
+    sctx.fillRect(0, 0, size, size);
+    // Bake soft filaments once; animation frames only composite these sprites.
+    sctx.lineCap = 'round';
+    for (let i = 0; i < 9; i += 1) {
+      sctx.beginPath();
+      sctx.moveTo(12, 170 + i * 3);
+      sctx.bezierCurveTo(200, 205 - i * 7, 35, 75 + i * 5, 238, 65 + i * 4);
+      sctx.strokeStyle = `${rgb}0.12)`;
+      sctx.lineWidth = 5 + i * 2;
+      sctx.filter = 'blur(5px)';
+      sctx.stroke();
+    }
+    sctx.filter = 'none';
+    sctx.globalCompositeOperation = 'destination-in';
     sctx.fillStyle = grad;
     sctx.fillRect(0, 0, size, size);
     return sprite;
@@ -238,7 +252,7 @@ export function initVapor(canvas) {
       x: Math.random() * width,
       y: initial ? Math.random() * height : height * (0.8 + Math.random() * 0.35),
       r: (isMobile ? 70 : 95) + Math.random() * (isMobile ? 85 : 150),
-      alpha: 0.03 + Math.random() * 0.05,
+      alpha: 0.16 + Math.random() * 0.16,
       vy: -(0.05 + Math.random() * 0.1),
       drift: 0.35 + Math.random() * 0.75,
       phase: Math.random() * Math.PI * 2,
@@ -259,6 +273,10 @@ export function initVapor(canvas) {
   for (let i = 0; i < COUNT; i += 1) particles.push(spawn(true));
 
   let running = true;
+  let inView = true;
+  let paused = false;
+  const motionPreference = reduceMotionQuery();
+  const motionToggle = document.querySelector('[data-motion-toggle]');
   let rafId = null;
   let last = 0;
   let elapsed = 0;
@@ -282,7 +300,8 @@ export function initVapor(canvas) {
         Object.assign(p, spawn(false));
       }
 
-      ctx.globalAlpha = p.alpha;
+      const fade = Math.min(1, Math.max(0, (p.y + p.r) / (height * 0.35)));
+      ctx.globalAlpha = p.alpha * fade;
       ctx.drawImage(sprites[p.spriteIndex], p.x - p.r, p.y - p.r, p.r * 2, p.r * 2);
     }
 
@@ -291,7 +310,7 @@ export function initVapor(canvas) {
   };
 
   const start = () => {
-    if (running && rafId === null) {
+    if (running && !paused && !motionPreference.matches && !document.hidden && rafId === null) {
       last = 0;
       rafId = window.requestAnimationFrame(step);
     }
@@ -319,7 +338,8 @@ export function initVapor(canvas) {
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          setRunning(entry.isIntersecting && !document.hidden);
+          inView = entry.isIntersecting;
+          setRunning(inView);
         }
       },
       { threshold: 0 },
@@ -338,14 +358,28 @@ export function initVapor(canvas) {
     { passive: true },
   );
 
-  reduceMotionQuery().addEventListener('change', (event) => {
+  const updateToggle = () => {
+    if (!motionToggle) return;
+    motionToggle.hidden = motionPreference.matches;
+    motionToggle.textContent = paused ? 'Resume atmosphere' : 'Pause atmosphere';
+    motionToggle.setAttribute('aria-pressed', String(paused));
+  };
+  motionToggle?.addEventListener('click', () => {
+    paused = !paused;
+    if (paused) stop();
+    else setRunning(inView);
+    updateToggle();
+  });
+  motionPreference.addEventListener('change', (event) => {
     if (event.matches) {
       stop();
       ctx.clearRect(0, 0, width, height);
     } else {
-      setRunning(true);
+      setRunning(inView);
     }
+    updateToggle();
   });
 
+  updateToggle();
   start();
 }
