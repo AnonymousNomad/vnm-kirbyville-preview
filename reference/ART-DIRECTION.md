@@ -174,3 +174,11 @@ preview-review project skills.
 noindex/nofollow policy and existing URLs remain unchanged. Local review URL:
 `http://127.0.0.1:4187/vnm-kirbyville-preview/`, marker `hometown-local-v5`.
 Main remains `75f02de02d7e6d7c0a0d156190dfa0ec0ee465cb`; no deployment was triggered.
+
+## Publication handoff
+
+The statements above record the completed local candidate review. The user then
+approved the result and requested a clickable GitHub repository link for an in-person
+presentation. That request authorizes publishing the reviewed candidate to the existing
+Pages URL. The README and repository About website link point to that same live preview.
+The preview indexing policy remains disabled.

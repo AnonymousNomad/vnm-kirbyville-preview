@@ -1,6 +1,6 @@
 # Vape N More — Kirbyville preview
 
-[View the live website preview](https://anonymousnomad.github.io/vnm-kirbyville-preview/)
+[Open Vape N More — live website preview](https://anonymousnomad.github.io/vnm-kirbyville-preview/)
 
 The live link shows the current GitHub Pages deployment from `main`.
 
@@ -12,8 +12,10 @@ This is an unofficial design demonstration. Indexing stays disabled through
 
 ## Reference reconstruction
 
-The current homepage branch is `work/homepage-art-direction`, based on `b7b8cf9`.
-It is for local review first; the public deployment remains unchanged.
+The reviewed homepage was developed on `work/homepage-art-direction`, based on
+`b7b8cf9`. After local review, the user authorized publishing this version for an
+in-person presentation. The link above and the repository's About website link
+open the current GitHub Pages preview.
 After `npm run build`, start `npm run preview -- --host 127.0.0.1` and open
 http://127.0.0.1:4187/vnm-kirbyville-preview/.
 See the [homepage art-direction report](reference/ART-DIRECTION.md),
