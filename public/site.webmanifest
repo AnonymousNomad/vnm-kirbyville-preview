@@ -1,0 +1,18 @@
+{
+  "name": "Vape N More — Kirbyville, Texas",
+  "short_name": "Vape N More",
+  "description": "Location-specific website preview for a vape and smoke shop in Kirbyville, Texas. In-store shopping, 21+.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#05070a",
+  "theme_color": "#05070a",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,219 @@
+/* ==========================================================================
+   responsive.css — breakpoint ladder (mobile is a primary target)
+   verified at: 360 · 390 · 430 · 768 · 1024 · 1440+
+   ========================================================================== */
+
+/* --------------------------- ≤ 1199px (laptop) --------------------------- */
+@media (max-width: 1199px) {
+  :root {
+    --container: 1080px;
+  }
+}
+
+/* --------------------- ≤ 1023px (tablet landscape) ---------------------- */
+@media (max-width: 1023px) {
+  .hero {
+    min-height: auto;
+    padding-block: clamp(6rem, 12vh, 7.5rem) clamp(3.5rem, 7vh, 5rem);
+  }
+
+  .hero__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(2.5rem, 6vw, 3.5rem);
+  }
+
+  .hero__visual {
+    max-width: 520px;
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  .hero__lede {
+    max-width: 60ch;
+  }
+
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .site-footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ------------------------ ≤ 979px (tablet portrait) ---------------------- */
+@media (max-width: 979px) {
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .site-nav {
+    position: fixed;
+    inset: var(--header-h) 0 auto 0;
+    max-height: calc(100svh - var(--header-h));
+    overflow-y: auto;
+    padding: var(--space-4) clamp(1.25rem, 4vw, 2.5rem) var(--space-6);
+    background: rgba(5, 7, 10, 0.97);
+    border-bottom: 1px solid var(--line);
+    backdrop-filter: blur(18px) saturate(1.2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition:
+      opacity var(--dur-base) var(--ease-out),
+      transform var(--dur-base) var(--ease-out),
+      visibility 0s linear var(--dur-base);
+  }
+
+  .site-nav.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition-delay: 0s;
+  }
+
+  .site-nav__list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .site-nav a {
+    display: block;
+    padding: 0.95rem 0.25rem;
+    font-size: 1.05rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .site-nav a::after {
+    display: none;
+  }
+
+  html.is-menu-open,
+  html.is-menu-open body {
+    overflow: hidden;
+  }
+
+  .detail-list {
+    max-width: none;
+  }
+}
+
+/* --------------------------- ≤ 767px (mobile L) -------------------------- */
+@media (max-width: 767px) {
+  :root {
+    --header-h: 64px;
+    --section-y: clamp(3.75rem, 9vw, 5rem);
+  }
+
+  .brand__name {
+    font-size: 0.98rem;
+  }
+
+  .hero__title {
+    letter-spacing: -0.026em;
+  }
+
+  .hero__cta .btn {
+    flex: 1 1 auto;
+  }
+
+  .hero__visual {
+    max-width: 440px;
+  }
+
+  .detail {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.3rem;
+  }
+
+  .section__footnote {
+    align-items: flex-start;
+  }
+
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ---------------------------- ≤ 519px (mobile) --------------------------- */
+@media (max-width: 519px) {
+  .site-header__actions .btn {
+    display: none;
+  }
+
+  .hero__note {
+    font-size: 0.78rem;
+  }
+
+  .stage__caption {
+    font-size: 0.58rem;
+  }
+
+  .review-source {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ---------------------------- ≤ 429px (small) ---------------------------- */
+@media (max-width: 429px) {
+  .hero {
+    padding-block: 5.75rem 3.25rem;
+  }
+
+  .hero__cta {
+    gap: 0.65rem;
+  }
+
+  .hero__cta .btn {
+    width: 100%;
+  }
+
+  .hero__visual {
+    max-width: 360px;
+  }
+
+  .map-panel__meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card {
+    padding: 1.35rem 1.2rem 1.4rem;
+  }
+}
+
+/* ------------------------- ≤ 359px (very small) -------------------------- */
+@media (max-width: 359px) {
+  .container {
+    padding-inline: 1rem;
+  }
+
+  .hero__visual {
+    max-width: 320px;
+  }
+
+  .brand__place {
+    display: none;
+  }
+}
+
+/* ---------------------- pointer / hover capability gates ----------------- */
+@media (hover: none) {
+  .card:hover {
+    transform: none;
+  }
+
+  .card::after {
+    display: none;
+  }
+}
+
+/* ------------------------------ large desktop ---------------------------- */
+@media (min-width: 1440px) {
+  :root {
+    --container: 1240px;
+  }
+}

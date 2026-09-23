@@ -1,0 +1,208 @@
+/* ==========================================================================
+   sections.css — hero + section-specific composition + atmospheric motion
+   ========================================================================== */
+
+/* --------------------------------- hero --------------------------------- */
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  min-height: min(96svh, 940px);
+  padding-block: clamp(6.5rem, 13vh, 9rem) clamp(4rem, 8vh, 6rem);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(58% 46% at 14% 6%, rgba(70, 224, 207, 0.10), transparent 68%),
+    radial-gradient(46% 42% at 80% 16%, rgba(242, 165, 92, 0.055), transparent 70%),
+    radial-gradient(52% 44% at 90% 84%, rgba(124, 108, 255, 0.075), transparent 72%),
+    linear-gradient(180deg, #070a0f, #05070a 72%);
+}
+
+.hero__atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* faint architectural hairlines: art direction, not decoration */
+.hero__atmosphere::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.022) 0 1px,
+    transparent 1px 112px
+  );
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 24%, #000 72%, transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 24%, #000 72%, transparent);
+  opacity: 0.75;
+}
+
+.hero__vapor {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+}
+
+.hero__grid {
+  position: relative;
+  z-index: var(--z-content);
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(2.75rem, 6vw, 4.5rem);
+  align-items: center;
+  width: 100%;
+}
+
+.hero__title {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.032em;
+  font-weight: 600;
+  color: var(--text-hi);
+}
+
+.hero__title-accent {
+  display: inline-block;
+  background: linear-gradient(96deg, var(--accent-200) 0%, var(--accent-400) 46%, var(--accent-500) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(0 0 30px rgba(70, 224, 207, 0.20));
+}
+
+.hero__lede {
+  margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
+  max-width: 52ch;
+  font-size: var(--fs-lede);
+  color: var(--text-mid);
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: clamp(1.75rem, 3vw, 2.25rem);
+}
+
+.hero__note {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+  font-size: 0.82rem;
+  color: var(--text-low);
+}
+
+.hero__visual {
+  position: relative;
+  will-change: transform;
+}
+
+.hero__fade {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 130px;
+  z-index: 1;
+  background: linear-gradient(180deg, transparent, var(--ink-950));
+  pointer-events: none;
+}
+
+/* --------------------------- section transitions ------------------------ */
+.section--tinted::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 240px;
+  background: radial-gradient(58% 100% at 50% 0%, rgba(70, 224, 207, 0.045), transparent 70%);
+  pointer-events: none;
+}
+
+.section--tinted > .container {
+  position: relative;
+}
+
+/* --------------------------- atmospheric motion ------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .stage {
+    animation: stage-float 15s var(--ease-in-out) infinite;
+  }
+
+  .map-panel__pulse {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: pin-pulse 3.8s var(--ease-out) infinite;
+  }
+
+  .status__dot {
+    animation: dot-breathe 2.8s var(--ease-in-out) infinite;
+  }
+}
+
+@keyframes stage-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes pin-pulse {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.8;
+  }
+  72% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+
+@keyframes dot-breathe {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* static fallback: no motion at all for reduced-motion users */
+@media (prefers-reduced-motion: reduce) {
+  .stage,
+  .map-panel__pulse,
+  .status__dot,
+  .card::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .card::after {
+    display: none;
+  }
+}

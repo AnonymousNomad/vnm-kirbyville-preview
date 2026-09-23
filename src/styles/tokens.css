@@ -1,0 +1,117 @@
+/* ==========================================================================
+   tokens.css — design tokens (single source of visual truth)
+   Dark East Texas atmosphere · premium smoke-shop retail
+   restrained cyan/teal neon · warm product lighting · subtle vapor
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/assets/fonts/space-grotesk-latin-var.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+
+  /* ---------- palette: near-black / charcoal ---------- */
+  --ink-950: #05070a;
+  --ink-900: #080b10;
+  --ink-850: #0b1016;
+  --ink-800: #0e1319;
+  --ink-750: #12171f;
+  --ink-700: #1a212b;
+
+  /* ---------- lines / surfaces ---------- */
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.14);
+  --surface-1: rgba(255, 255, 255, 0.028);
+  --surface-2: rgba(255, 255, 255, 0.012);
+  --glass: rgba(5, 7, 10, 0.72);
+
+  /* ---------- text ---------- */
+  --text-hi: #f2f5f7;
+  --text-mid: #a8b0ba;
+  --text-low: #6b7480;
+
+  /* ---------- accents (restrained) ---------- */
+  --accent-200: #b9f7ee;
+  --accent-300: #7ff0e4;
+  --accent-400: #46e0cf;
+  --accent-500: #22c9bd;
+  --accent-600: #14a89e;
+  --accent-ink: #04211e;
+
+  --emerald: #3ecf8e;
+  --violet: #7c6cff;
+  --amber: #f2a55c;
+
+  --accent-glow: rgba(70, 224, 207, 0.32);
+  --accent-soft: rgba(70, 224, 207, 0.08);
+  --violet-soft: rgba(124, 108, 255, 0.10);
+  --amber-soft: rgba(242, 165, 92, 0.14);
+
+  /* ---------- typography ---------- */
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Space Grotesk', ui-sans-serif, system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'SF Mono', Consolas, 'Liberation Mono', monospace;
+
+  --fs-h1: clamp(2rem, 4.4vw, 3.75rem);
+  --fs-h2: clamp(1.85rem, 2.9vw + 0.7rem, 2.85rem);
+  --fs-h3: clamp(1.06rem, 0.5vw + 0.95rem, 1.22rem);
+  --fs-lede: clamp(1rem, 0.45vw + 0.92rem, 1.14rem);
+  --fs-body: 1rem;
+  --fs-small: 0.9rem;
+  --fs-micro: 0.72rem;
+
+  --lh-tight: 1.04;
+  --lh-snug: 1.25;
+  --lh-body: 1.68;
+
+  /* ---------- spacing scale ---------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 2.5rem;
+  --space-8: 3rem;
+  --space-9: 4rem;
+  --space-10: 5rem;
+  --space-11: 6.5rem;
+  --space-12: 8rem;
+
+  /* ---------- radii (deliberate + consistent) ---------- */
+  --r-xs: 8px;
+  --r-sm: 12px;
+  --r-md: 16px;
+  --r-lg: 20px;
+  --r-xl: 26px;
+  --r-pill: 999px;
+
+  /* ---------- shadows ---------- */
+  --shadow-soft: 0 24px 60px -34px rgba(0, 0, 0, 0.85);
+  --shadow-lift: 0 30px 70px -36px rgba(0, 0, 0, 0.9);
+  --shadow-glow: 0 0 44px -18px var(--accent-glow);
+  --shadow-inset-hair: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  /* ---------- motion ---------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur-base: 320ms;
+  --dur-slow: 620ms;
+
+  /* ---------- layout ---------- */
+  --container: 1200px;
+  --header-h: 72px;
+  --section-y: clamp(4.5rem, 8.5vw, 7.5rem);
+
+  /* ---------- z-index ---------- */
+  --z-atmosphere: 0;
+  --z-content: 2;
+  --z-header: 60;
+  --z-skip: 100;
+}
