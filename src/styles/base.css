@@ -229,3 +229,22 @@ button {
     transition: none;
   }
 }
+
+/* print / save-as-PDF: never let scroll-reveal hide content on paper */
+@media print {
+  .js [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .site-header {
+    position: static;
+  }
+
+  .hero__atmosphere,
+  .hero__vapor,
+  body::after {
+    display: none !important;
+  }
+}

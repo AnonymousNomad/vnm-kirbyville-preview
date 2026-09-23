@@ -265,6 +265,27 @@ async function main() {
         assert(unnamed === 0, `${unnamed} unnamed buttons`);
       });
 
+      await check('atmosphere canvas is painting and animating', async () => {
+        const sample = () =>
+          page.evaluate(() => {
+            const canvas = document.querySelector('[data-vapor-canvas]');
+            if (!canvas || !canvas.width) return { nonZero: 0, sum: 0 };
+            const data = canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data;
+            let nonZero = 0;
+            let sum = 0;
+            for (let i = 3; i < data.length; i += 4) {
+              if (data[i] !== 0) nonZero += 1;
+              sum += data[i];
+            }
+            return { nonZero, sum };
+          });
+        const first = await sample();
+        await page.waitForTimeout(800);
+        const second = await sample();
+        assert(first.nonZero > 1000, `canvas nearly empty (${first.nonZero} non-zero alpha bytes)`);
+        assert(first.sum !== second.sum, 'canvas is not animating between samples');
+      });
+
       // Fresh document again, then verify real navigation by click.
       await page.goto(baseUrl, { waitUntil: 'load' });
       await page.waitForTimeout(600);
