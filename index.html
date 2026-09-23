@@ -44,57 +44,101 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
-  <svg class="svg-defs" aria-hidden="true" focusable="false" width="0" height="0"><defs><symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></symbol><symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7v.2"/></symbol><symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11a9 9 0 0 1-9 9H3l2-5a9 9 0 1 1 16-4Z"/><path d="M8 9h8M8 13h5"/></symbol><symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 2 9 4v6c0 6-9 10-9 10S3 18 3 12V6Z"/><path d="m8 12 3 3 5-6"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol><symbol id="i-texas" viewBox="0 0 24 24"><path d="M7 2h7v6l5 2 3-1v5l-5 3-2 5-4-2-3-6-3 1-4-5h6Z"/></symbol></defs></svg>
+  <svg class="svg-defs" aria-hidden="true" focusable="false" width="0" height="0"><defs>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 0 1 14 0Z"/><circle cx="12" cy="10" r="2.4"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2M5 3 3 5m16-2 2 2"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="m7 3 3 5-3 2a15 15 0 0 0 7 7l2-3 5 3v3C11 22 2 13 3 3Z"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24"><path d="m12 3 9 9-9 9-9-9Z"/><path d="M8 15v-4h8m-3-3 3 3-3 3"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-texas" viewBox="0 0 24 24"><path d="M7 2h7v6l5 2 3-1v5l-5 3-2 5-4-2-3-6-3 1-4-5h6Z"/></symbol>
+  </defs></svg>
   <header class="site-header" data-header>
     <div class="container site-header__bar">
-      <a class="brand" href="#home" aria-label="Vape N More — Kirbyville, Texas — back to top"><span class="brand__text"><span class="brand__name">Vape <em>N</em> More</span><span class="brand__place">Kirbyville &nbsp; · &nbsp; Texas</span></span></a>
-      <nav class="site-nav" id="site-nav" aria-label="Primary"><ul class="site-nav__list"><li><a href="#home" data-nav-link>Home</a></li><li><a href="#products" data-nav-link>Details</a></li><li><a href="#about" data-nav-link>About</a></li><li><a href="#reviews" data-nav-link>Reviews</a></li><li><a href="#location" data-nav-link>Location</a></li><li><a href="#contact" data-nav-link>Contact</a></li></ul></nav>
-      <div class="site-header__actions"><span class="place-badge"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-texas"/></svg><span>Kirbyville, TX<small>East Texas · 21+</small></span></span>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu" data-menu-toggle><span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span></button></div>
+      <a class="brand" href="#home" aria-label="Vape N More — Kirbyville, Texas — back to top"><span class="brand__name">Vape <em>N</em> More<span class="brand__point">.</span></span><span class="brand__place">Kirbyville, Texas</span></a>
+      <nav class="site-nav" id="site-nav" aria-label="Primary"><ul class="site-nav__list"><li><a href="#home" data-nav-link>Home</a></li><li><a href="#products" data-nav-link>Details</a></li><li><a href="#inside" data-nav-link>Inside</a></li><li><a href="#about" data-nav-link>About</a></li><li><a href="#reviews" data-nav-link>Reviews</a></li><li><a href="#location" data-nav-link>Location</a></li><li><a href="#contact" data-nav-link>Contact</a></li></ul></nav>
+      <span class="header-place">East Texas <span>21+</span></span>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu" data-menu-toggle><span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span></button>
     </div>
   </header>
-  <main id="main" data-design-version="storefront-local-v4">
+  <main id="main" data-design-version="hometown-local-v5">
     <section class="hero" id="home" aria-labelledby="hero-title">
-      <div class="hero__landscape" aria-hidden="true"></div>
+      <figure class="hero__scene stage">
+        <img src="%BASE%assets/storefront-dusk.webp" width="1600" height="900" alt="Edited dusk concept of the supplied Vape N More storefront" fetchpriority="high" decoding="async">
+        <figcaption><span class="scene-marker">01 / The storefront</span><span>US-96 · Kirbyville, Texas</span></figcaption>
+      </figure>
       <div class="hero__atmosphere" aria-hidden="true"><canvas class="hero__vapor" data-vapor-canvas></canvas></div>
-      <div class="container hero__grid">
+      <div class="container hero__layout">
         <div class="hero__content">
-          <p class="eyebrow">Kirbyville · Texas · Adults 21+</p>
-          <h1 class="hero__title" id="hero-title">Kirbyville, Texas<br><span>Vape &amp; Smoke Shop</span></h1>
-          <p class="hero__lede">%ADDRESS_DISPLAY%.<br>%HOURS_DISPLAY%.<br>For adults aged 21 and over.</p>
-          <div class="hero__cta"><a class="btn btn--primary" href="%CONTACT_HREF%" data-contact-href><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chat"/></svg><span>Call<small>%PHONE_DISPLAY%</small></span></a><a class="btn btn--ghost" href="%DIRECTIONS_URL%" target="_blank" rel="noopener" data-directions-href><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-pin"/></svg><span>Directions<small>21034 US-96 · Kirbyville</small></span></a></div>
-          <p class="hero__note"><span class="age-label">21+</span>For adults only. Informational preview.</p><button class="motion-toggle" type="button" aria-pressed="false" data-motion-toggle>Pause atmosphere</button>
+          <p class="eyebrow"><span class="eyebrow__rule"></span> Vape &amp; smoke shop · Adults 21+</p>
+          <h1 class="hero__title" id="hero-title">Vape N More.<br><em>Kirbyville, Texas.</em></h1>
+          <p class="hero__lede">21034 US-96.<br>A Kirbyville address. An East Texas setting.</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="%CONTACT_HREF%" data-contact-href><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg><span>Call<small>%PHONE_DISPLAY%</small></span></a>
+            <a class="btn btn--ghost" href="%DIRECTIONS_URL%" target="_blank" rel="noopener" data-directions-href><span>Get directions<small>21034 US-96 · Kirbyville</small></span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          </div>
+          <div class="hero__footnote"><span>For adults aged 21 and over.</span><button class="motion-toggle" type="button" aria-pressed="false" data-motion-toggle>Pause atmosphere</button></div>
         </div>
-        <figure class="stage" aria-hidden="true"><figcaption>Edited storefront concept supplied by the client</figcaption></figure>
+        <span class="hero__edition" aria-hidden="true">KIRBYVILLE<br><b>TX</b><span>JASPER COUNTY</span></span>
       </div>
     </section>
-    <section class="information" id="products" aria-labelledby="information-title">
-      <h2 class="sr-only" id="information-title">Business information at a glance</h2>
-      <div class="information__grid"><article class="info-card" data-reveal><a href="#about" aria-label="Business information"><div class="info-card__art art-0" role="img" aria-label="Supplied wide view of the store interior"></div><div class="info-card__body"><h3>Vape N More</h3><p>Business information.<br>Kirbyville, Texas.</p><span class="info-card__arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"/></svg></span></div></a></article><article class="info-card" data-reveal><a href="#location" aria-label="Location information"><div class="info-card__art art-1"></div><div class="info-card__body"><h3>Kirbyville, Texas</h3><p>21034 US-96.<br>Kirbyville, TX 75956.</p><span class="info-card__arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"/></svg></span></div></a></article><article class="info-card" data-reveal><a href="#contact" aria-label="Hours information"><div class="info-card__art art-2"></div><div class="info-card__body"><h3>Current hours</h3><p>%HOURS_DISPLAY%.</p><span class="info-card__arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"/></svg></span></div></a></article><article class="info-card" data-reveal><a href="#contact" aria-label="Contact information"><div class="info-card__art art-3"></div><div class="info-card__body"><h3>Contact details</h3><p>%PHONE_DISPLAY%.</p><span class="info-card__arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"/></svg></span></div></a></article><article class="info-card" data-reveal><a href="#about" aria-label="Age information"><div class="info-card__art art-4"></div><div class="info-card__body"><h3>Adults 21+</h3><p>For adults aged 21+.</p><span class="info-card__arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"/></svg></span></div></a></article></div>
-    </section>
-    <section class="about landscape-band" id="about" aria-labelledby="about-title">
-      <div class="container"><p class="eyebrow">Kirbyville · East Texas</p><h2 id="about-title">About Vape N More</h2>
-      <div class="facts-grid">
-        <article><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-info"/></svg><h3>Vape N More</h3><p>Business information for the Kirbyville, Texas location.</p></article>
-        <article><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-pin"/></svg><h3>Location details</h3><p>21034 US-96.<br>Kirbyville, TX 75956.</p></article>
-        <article><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-shield"/></svg><h3>Adults 21+ only</h3><p>Age-restricted information. No online transactions.</p></article>
-        <article><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chat"/></svg><h3>Daily hours</h3><p>%HOURS_DISPLAY%.<br>Call for holiday hours.</p></article>
-      </div><span class="landscape-label" aria-hidden="true">Kirbyville<br><em>Texas</em></span></div>
-    </section>
-    <section class="reviews" id="reviews" aria-labelledby="reviews-title">
-      <div class="container"><div class="section-heading"><div><p class="eyebrow">Customer feedback</p><h2 id="reviews-title">Customer Reviews</h2></div><span class="status">Reviews on Google</span></div>
-      <div class="reviews-grid">
-        <article class="review-card" data-demo="true" data-reveal><span class="review-card__label">01 / Business listing</span><h3>Google business profile</h3><a class="listing-link" href="%LISTING_URL%" target="_blank" rel="noopener">View business listing <span aria-hidden="true">↗</span></a></article>
-        <article class="review-card" data-demo="true" data-reveal><span class="review-card__label">02 / Customer feedback</span><h3>Customer feedback</h3><p>Customer feedback is available on the supplied Google business profile.</p><span class="review-card__mark" aria-hidden="true">“</span></article>
-        <article class="review-card" data-demo="true" data-reveal><span class="review-card__label">03 / Ratings</span><h3>Ratings & reviews</h3><p>Review excerpts are not reproduced in this preview.</p><span class="review-card__mark" aria-hidden="true">“</span></article>
-      </div></div>
-    </section>
-    <section class="location landscape-band" id="location" aria-labelledby="location-title">
-      <div class="container location__grid"><div><p class="eyebrow">Location information</p><h2 id="location-title">Our Kirbyville Location</h2><p class="location__copy">%ADDRESS_DISPLAY%.<br>%HOURS_DISPLAY%.</p><div class="hero__cta"><a class="btn btn--ghost" href="%DIRECTIONS_URL%" target="_blank" rel="noopener" data-directions-href><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-pin"/></svg><span>Directions<small>21034 US-96 · Kirbyville</small></span></a><a class="btn btn--ghost" href="#contact"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-info"/></svg>Contact details</a></div></div>
-      <div class="location-panel"><div class="location-panel__map"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-pin"/></svg><strong data-store-address-value>%ADDRESS_DISPLAY%</strong><small>Address supplied from the Google listing</small></div><div class="location-panel__state"><svg class="icon" viewBox="0 0 24 24" role="img" aria-label="Illustrative outline of Texas"><use href="#i-texas"/></svg><span>Kirbyville<br>Texas</span><small>Kirbyville<br>East Texas</small></div></div></div>
+
+    <section class="local-details container" id="products" aria-labelledby="details-title">
+      <h2 class="sr-only" id="details-title">Local information and actions</h2>
+      <div class="utility-strip">
+        <a class="utility-item utility-hours" href="#contact"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-clock"/></svg><span><small>Regular hours</small><strong>9 AM — 9 PM</strong><span>Every day · holiday hours may vary</span></span></a>
+        <a class="utility-item" href="%CONTACT_HREF%" data-contact-href><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg><span><small>Call</small><strong>%PHONE_DISPLAY%</strong><span>Contact the Kirbyville location</span></span></a>
+        <a class="utility-item" href="%DIRECTIONS_URL%" target="_blank" rel="noopener" data-directions-href><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-route"/></svg><span><small>Directions</small><strong>21034 US-96</strong><span>Open in Google Maps ↗</span></span></a>
+        <a class="utility-item" href="#about"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-texas"/></svg><span><small>East Texas</small><strong>Kirbyville</strong><span>Jasper County, TX</span></span></a>
+        <div class="utility-item utility-age"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-shield"/></svg><span><small>Age restricted</small><strong>Adults 21+</strong><span>Business information</span></span></div>
+      </div>
     </section>
 
+    <section class="inside" id="inside" aria-labelledby="inside-title">
+      <div class="container section-heading">
+        <div><p class="eyebrow">02 / A look inside</p><h2 id="inside-title">Inside <em>Vape N More.</em></h2></div>
+        <p class="section-intro">The counter, the wood walls,<br>and the shop around them.</p>
+      </div>
+      <div class="gallery" role="region" aria-roledescription="carousel" aria-labelledby="inside-title" data-gallery>
+        <div class="container gallery-toolbar" data-gallery-controls hidden>
+          <button class="text-control" type="button" data-gallery-play aria-label="Pause gallery rotation">Pause rotation</button>
+          <span class="gallery-hint">Drag to explore <span aria-hidden="true">↔</span></span>
+        </div>
+        <div class="gallery-stage" data-gallery-stage aria-label="Store photographs" tabindex="0">%GALLERY_SLIDES%</div>
+        <div class="container gallery-bottom" data-gallery-controls hidden>
+          <p class="gallery-counter" aria-live="off" data-gallery-counter></p>
+          <div class="gallery-pagination" role="group" aria-label="Choose a photograph" data-gallery-pagination></div>
+          <div class="gallery-arrows"><button class="round-control" type="button" aria-label="Previous photograph" data-gallery-prev><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></button><button class="round-control" type="button" aria-label="Next photograph" data-gallery-next><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></button></div>
+        </div>
+        <p class="sr-only" aria-live="polite" aria-atomic="true" data-gallery-announcement></p>
+      </div>
+      <dialog class="lightbox" aria-label="Store photograph" data-lightbox>
+        <button class="round-control lightbox__close" type="button" aria-label="Close enlarged photograph" data-lightbox-close>×</button>
+        <img alt="" data-lightbox-image>
+        <p data-lightbox-caption></p>
+      </dialog>
+    </section>
+
+    <section class="hometown container" id="about" aria-labelledby="about-title">
+      <figure class="hometown__photo" data-reveal><img src="%BASE%assets/kirbyville-sunset.webp" width="700" height="393" alt="Water tower and trees against a sunset, identified by the source as Kirbyville" loading="lazy" decoding="async"><figcaption>Kirbyville, Texas <span>Jasper County</span></figcaption></figure>
+      <div class="hometown__story" data-reveal><p class="eyebrow">03 / Here in Kirbyville</p><h2 id="about-title">A few words<br>from home.</h2><p class="hometown__intro">The owner’s familiar parting words:</p><blockquote>“Have a blessed day.<br><em>Be safe.</em>”</blockquote><p class="hometown__copy">Vape N More is located on US-96 in Kirbyville, Texas.</p><a class="text-link" href="#location">Location &amp; contact details <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+    </section>
+
+    <section class="reviews" id="reviews" aria-labelledby="reviews-title">
+      <div class="container reviews__layout">
+        <div><p class="eyebrow">04 / Customer feedback</p><h2 id="reviews-title">Reviews on Google.</h2></div>
+        <div class="reviews__source"><p>Read customer feedback on the<br>Vape N More business profile.</p><a class="listing-link text-link" href="%LISTING_URL%" target="_blank" rel="noopener">View the Google listing <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a><p class="reviews__note">Review excerpts are not reproduced in this preview.</p></div>
+      </div>
+    </section>
+
+    <section class="location container" id="location" aria-labelledby="location-title">
+      <div class="location__heading"><p class="eyebrow">05 / Location &amp; contact</p><h2 id="location-title">Find us on <em>US-96.</em></h2></div>
+      <div class="location__grid">
+        <div class="address-placard"><div class="address-placard__top"><span>Vape N More</span><svg class="icon" viewBox="0 0 24 24" role="img" aria-label="Outline of Texas"><use href="#i-texas"/></svg></div><span class="address-placard__number" aria-hidden="true">21034</span><span class="address-placard__road" aria-hidden="true">US HIGHWAY 96</span><p data-store-address-value>%ADDRESS_DISPLAY%</p><a class="text-link" href="%DIRECTIONS_URL%" target="_blank" rel="noopener" data-directions-href>Open directions <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+        <section class="contact" id="contact" aria-labelledby="contact-title"><h3 id="contact-title">The details, all in one place.</h3><dl class="contact-list"><div><dt>Regular hours</dt><dd data-store-hours>%HOURS_DISPLAY%</dd></div><div><dt>Telephone</dt><dd><a class="phone-slot" href="%CONTACT_HREF%" data-contact-href data-phone-value>%PHONE_DISPLAY%</a></dd></div><div><dt>Location</dt><dd>Kirbyville, Texas 75956</dd></div><div><dt>Age notice</dt><dd>Adults 21+ only</dd></div></dl><p class="contact__note">Call to confirm holiday hours before travelling.</p><a class="btn btn--ghost" href="%CONTACT_HREF%" data-contact-href><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg><span>Call the store</span></a></section>
+      </div>
+    </section>
   </main>
-  <footer class="site-footer">    <section class="contact" id="contact" aria-labelledby="contact-title"><div class="container contact__grid"><div><p class="eyebrow">Contact</p><h2 id="contact-title" class="sr-only">Contact details</h2></div><dl><div><dt>Phone</dt><dd><a class="phone-slot" href="%CONTACT_HREF%" data-contact-href data-phone-value>%PHONE_DISPLAY%</a></dd></div><div><dt>Hours</dt><dd data-store-hours>%HOURS_DISPLAY%</dd><dd class="contact__note">Call for holiday hours.</dd></div></dl><p class="closing-greeting">Take care. Have a blessed day.<span></span></p></div></section><div class="container"><div class="site-footer__row"><a class="brand" href="#home" aria-label="Vape N More — back to top"><span class="brand__text"><span class="brand__name">Vape <em>N</em> More</span><span class="brand__place">Kirbyville &nbsp; · &nbsp; Texas</span></span></a><nav aria-label="Footer"><ul><li><a href="#home" >Home</a></li><li><a href="#products" >Details</a></li><li><a href="#about" >About</a></li><li><a href="#reviews" >Reviews</a></li><li><a href="#location" >Location</a></li><li><a href="#contact" >Contact</a></li></ul></nav><p class="footer-age">For adults 21+ only.<br><span>Business-information preview.</span></p></div><div class="site-footer__fine"><p>Unofficial design demonstration. Not affiliated with, endorsed by, or operated by the business.</p><p>Nicotine is an addictive chemical. Storefront image is an edited concept.</p><p>&copy; <span data-year>2026</span> · Preview</p></div></div></footer>
+  <footer class="site-footer"><div class="container"><div class="site-footer__row"><a class="brand" href="#home" aria-label="Vape N More — back to top"><span class="brand__name">Vape <em>N</em> More<span class="brand__point">.</span></span><span class="brand__place">Kirbyville, Texas</span></a><nav aria-label="Footer"><ul><li><a href="#home">Home</a></li><li><a href="#products">Details</a></li><li><a href="#inside">Inside</a></li><li><a href="#about">About</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#location">Location</a></li><li><a href="#contact">Contact</a></li></ul></nav><p class="footer-age">Kirbyville, Texas<br><span>For adults 21+.</span></p></div><div class="site-footer__fine"><p>Unofficial design demonstration. Not affiliated with, endorsed by, or operated by the business.</p><p>Nicotine is an addictive chemical. Storefront image is an edited concept.</p><p>© <span data-year>2026</span> · Preview</p></div></div></footer>
 </body>
 </html>

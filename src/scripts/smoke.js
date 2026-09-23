@@ -238,8 +238,10 @@ check('preview attribution present', () => {
   assert(/unofficial design demonstration/i.test(html), 'preview attribution missing');
 });
 check('review information is labelled and points to its external source', () => {
-  const demos = (html.match(/data-demo="true"/g) ?? []).length;
-  assert(demos >= 3, `expected >=3 demo-labelled review cards, found ${demos}`);
+  // This redesign removes the three placeholder testimonial cards. Retain the
+  // actual contract: source-labelled external feedback, no fabricated ratings.
+  assert(/id="reviews"/.test(html), 'review information section missing');
+  assert(!/"aggregateRating"|"reviewRating"/.test(html), 'unverified review schema found');
   assert(/Reviews on Google/.test(html), 'external review source label missing');
   assert(html.includes('Review excerpts are not reproduced'), 'review reproduction status missing');
   assert(html.includes(STORE.listingUrl), 'supplied Google listing link missing');

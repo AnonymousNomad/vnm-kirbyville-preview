@@ -12,6 +12,7 @@
     "og": "node src/scripts/og-image.js",
     "verify:browser": "node src/scripts/verify-browser.js",
     "verify:visual": "node src/scripts/verify-visual.js",
+    "verify:gallery": "node src/scripts/verify-gallery.js",
     "verify": "npm run build && npm run smoke && npm run verify:browser"
   },
   "devDependencies": {

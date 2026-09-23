@@ -12,11 +12,13 @@ This is an unofficial design demonstration. Indexing stays disabled through
 
 ## Reference reconstruction
 
-The current correction branch is `work/fidelity-correction`, based on `75f02de`.
+The current homepage branch is `work/homepage-art-direction`, based on `b7b8cf9`.
 It is for local review first; the public deployment remains unchanged.
 After `npm run build`, start `npm run preview -- --host 127.0.0.1` and open
 http://127.0.0.1:4187/vnm-kirbyville-preview/.
-See the [local correction report](reference/CORRECTION.md),
+See the [homepage art-direction report](reference/ART-DIRECTION.md),
+[complete supplied-media inventory](reference/MEDIA-INVENTORY.json),
+[earlier correction report](reference/CORRECTION.md),
 [research ledger](reference/RESEARCH.md), and [review matrix](reference/REVIEW-MATRIX.md).
 Project skills are under `.agents/skills/`.
 
@@ -36,6 +38,8 @@ verification evidence and remaining differences. The Pages workflow deploys push
 - `npm run smoke` — 52-check static gate, including supplied-fact and fallback checks.
 - `npm run verify:browser` — 52-check Edge browser gate and screenshots.
 - `npm run verify:visual` — extra widths, motion controls, no-JS navigation and print checks.
+- `npm run verify:gallery` — media coverage/deduplication, one-time shuffle, rotation,
+  pause, keyboard, touch, reduced motion, lightbox and no-JS image access.
 - `npm run og` — regenerate the neutral Open Graph image from its HTML template.
 
 Browser checks require Microsoft Edge, driven by the existing playwright-core dependency.
@@ -53,7 +57,7 @@ no map coordinates or place pin are invented. Unknown social URLs remain null.
 The supplied Google share URL links to the business listing. Ratings and review
 excerpts are not reproduced; no inventory, pricing or customer claims are invented.
 
-The closing greeting, “Take care. Have a blessed day.”, follows the user's report of the
+The hometown greeting, “Have a blessed day. Be safe.”, follows the user's report of the
 owner's customary greeting. It is not a customer testimonial or an assertion of religion.
 The user's report of a Facebook page is not sufficient to invent its URL.
 
@@ -63,10 +67,12 @@ The user's report of a Facebook page is not sufficient to invent its URL.
 - src/styles/: tokens, shared styles, section composition and responsive layouts.
 - src/scripts/main.js: verified business-data hydration and enhancement boot.
 - src/scripts/motion.js: menu, reveals and slow, fading canvas atmosphere.
-- public/assets/*-photo.webp: generated photographic atmosphere and card artwork.
+- src/data/media.js: audited interior image manifest, rendered into static HTML by Vite.
+- src/scripts/gallery.js: one-time shuffle, predictable rotation and accessible lightbox.
+- public/assets/store/: three distinct supplied environmental store views.
 - public/assets/storefront-dusk.webp: edited dusk concept from the user's exported artwork.
 - public/assets/kirbyville-sunset.webp: the user's selected scenic image; source in the artwork ledger.
-- public/assets/store-interior.jpg: small interior overview supplied by the user.
+- The earlier generated hero/forest/card images remain unused by this homepage.
 - src/assets/og-template.html: factual social-preview source.
 - vite.config.js: existing token replacement, Pages base and indexing assets.
 - .github/workflows/deploy-pages.yml: existing main-only Pages deployment.

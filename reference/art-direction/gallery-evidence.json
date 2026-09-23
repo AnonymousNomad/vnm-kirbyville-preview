@@ -1,0 +1,29 @@
+{
+  "checks": [
+    "Shuffle is a non-mutating permutation, with reproducible forward order",
+    "Every intended gallery source is present once, with unchanged bytes",
+    "Static page uses five unique images; no repeated prominent backgrounds",
+    "All selected gallery images rendered once, with contain sizing and lazy loading",
+    "Automatic rotation advances once through the initialized order",
+    "Hover pauses rotation",
+    "Pause button remains paused after pointer focus and mouse leave",
+    "Next/previous wrap without reshuffling and manual interaction stays paused",
+    "Keyboard arrows, pagination and active-slide accessibility stay aligned",
+    "Desktop dragging advances without triggering native link dragging or a lightbox",
+    "Lightbox opens, closes with Escape and restores focus",
+    "Explicit resume works; offscreen suspends and focus entry stops",
+    "Live reduced-motion preference disables automatic rotation",
+    "Initial reduced motion starts with automatic rotation disabled",
+    "Real touch swipe advances one slide and preserves vertical page scrolling",
+    "Without JavaScript, every photo remains accessible via a real image link"
+  ],
+  "pageImages": [
+    "/vnm-kirbyville-preview/assets/storefront-dusk.webp",
+    "/vnm-kirbyville-preview/assets/store/shop-overview.jpg",
+    "/vnm-kirbyville-preview/assets/store/interior-wall.webp",
+    "/vnm-kirbyville-preview/assets/store/counter-view.jpg",
+    "/vnm-kirbyville-preview/assets/kirbyville-sunset.webp"
+  ],
+  "galleryImages": 3,
+  "videos": 0
+}

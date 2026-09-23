@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { SITE, STORE, canonicalUrl, directionsHref, contactHref, robotsMeta, localBusinessJsonLd, phoneDisplay, addressDisplay, hoursDisplay } from './src/data/store.js';
+import { STORE_MEDIA } from './src/data/media.js';
 
 const root = dirname(fileURLToPath(import.meta.url));
 
@@ -28,6 +29,7 @@ function htmlTokens() {
     '%PHONE_DISPLAY%': phoneDisplay(),
     '%ADDRESS_DISPLAY%': addressDisplay(),
     '%HOURS_DISPLAY%': hoursDisplay(),
+    '%GALLERY_SLIDES%': STORE_MEDIA.map((item, index) => `<figure class="gallery-slide" data-media-id="${item.id}" role="group" aria-roledescription="slide" aria-label="${index + 1} of ${STORE_MEDIA.length}"><a class="gallery-slide__open" href="${SITE.base}${item.src}" data-gallery-open aria-label="Enlarge: ${item.caption}"><img src="${SITE.base}${item.src}" width="${item.width}" height="${item.height}" alt="${item.alt}" loading="lazy" decoding="async" draggable="false"><span class="gallery-slide__expand" aria-hidden="true">↗</span></a><figcaption><span>${item.caption}</span><small>Vape N More · Kirbyville</small></figcaption></figure>`).join('\n'),
   };
 
   return {

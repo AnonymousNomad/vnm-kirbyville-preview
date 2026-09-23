@@ -1,0 +1,46 @@
+{
+  "url": "http://127.0.0.1:4187/vnm-kirbyville-preview/",
+  "status": 200,
+  "version": "hometown-local-v5",
+  "noindex": true,
+  "resourceBodyBytes": 341283,
+  "note": "Cold local browser resource bodies; document bytes and HTTP overhead are separate. Not a field-performance score.",
+  "resources": [
+    {
+      "url": "/vnm-kirbyville-preview/assets/fonts/space-grotesk-latin-var.woff2",
+      "bytes": 22288
+    },
+    {
+      "url": "/vnm-kirbyville-preview/assets/storefront-dusk.webp",
+      "bytes": 152292
+    },
+    {
+      "url": "/vnm-kirbyville-preview/assets/main-Bf-8Sgen.js",
+      "bytes": 4992
+    },
+    {
+      "url": "/vnm-kirbyville-preview/assets/main-CgXNvXhP.css",
+      "bytes": 7498
+    },
+    {
+      "url": "/vnm-kirbyville-preview/assets/store/shop-overview.jpg",
+      "bytes": 3822
+    },
+    {
+      "url": "/vnm-kirbyville-preview/assets/store/counter-view.jpg",
+      "bytes": 7950
+    },
+    {
+      "url": "/vnm-kirbyville-preview/assets/store/interior-wall.webp",
+      "bytes": 96652
+    },
+    {
+      "url": "/vnm-kirbyville-preview/assets/kirbyville-sunset.webp",
+      "bytes": 45077
+    },
+    {
+      "url": "/vnm-kirbyville-preview/favicon.svg",
+      "bytes": 712
+    }
+  ]
+}

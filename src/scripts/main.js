@@ -7,6 +7,7 @@ import '../styles/base.css';
 import '../styles/components.css';
 import '../styles/sections.css';
 import '../styles/responsive.css';
+import { initGallery } from './gallery.js';
 
 import {
   STORE,
@@ -91,6 +92,7 @@ function boot() {
     () => initActiveNav(navLinks),
     () => initParallax(document.querySelector('[data-parallax]')),
     () => initVapor(document.querySelector('[data-vapor-canvas]')),
+    () => initGallery(document.querySelector('[data-gallery]')),
   ];
 
   for (const job of jobs) {
