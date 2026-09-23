@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, canonicalUrl, directionsHref, contactHref, robotsMeta, localBusinessJsonLd } from './src/data/store.js';
+import { SITE, STORE, canonicalUrl, directionsHref, contactHref, robotsMeta, localBusinessJsonLd, phoneDisplay, addressDisplay, hoursDisplay } from './src/data/store.js';
 
 const root = dirname(fileURLToPath(import.meta.url));
 
@@ -24,6 +24,10 @@ function htmlTokens() {
     '%JSONLD%': jsonLd,
     '%DIRECTIONS_URL%': directionsHref(),
     '%CONTACT_HREF%': contactHref(),
+    '%LISTING_URL%': STORE.listingUrl,
+    '%PHONE_DISPLAY%': phoneDisplay(),
+    '%ADDRESS_DISPLAY%': addressDisplay(),
+    '%HOURS_DISPLAY%': hoursDisplay(),
   };
 
   return {

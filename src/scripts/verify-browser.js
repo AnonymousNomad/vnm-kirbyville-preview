@@ -19,7 +19,7 @@ import { existsSync, mkdirSync } from 'node:fs';
 import { join, normalize, resolve, dirname, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright-core';
-import { SITE } from '../data/store.js';
+import { SITE, STORE, contactHref, directionsHref, addressDisplay, hoursDisplay } from '../data/store.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const dist = join(root, 'dist');
@@ -244,7 +244,7 @@ async function main() {
 
       await check('contact CTA does not fake a tel: link', async () => {
         const href = await page.locator('[data-contact-href]').first().getAttribute('href');
-        assert(href === '#contact', `expected #contact, got ${href}`);
+        assert(href === contactHref(), `expected verified-data target ${contactHref()}, got ${href}`);
       });
 
       await check('directions link targets a real maps search with rel=noopener', async () => {
@@ -252,6 +252,12 @@ async function main() {
         assert(tag.includes('google.com/maps/search'), 'directions URL is not a maps search');
         assert(tag.includes('rel="noopener'), 'missing rel=noopener');
         assert(tag.includes('target="_blank"'), 'missing target=_blank');
+        assert(await page.locator('[data-directions-href]').first().getAttribute('href') === directionsHref(), 'maps query differs from verified data');
+      });
+      await check('contact and location display the supplied business details', async () => {
+        assert(await page.locator('[data-phone-value]').textContent() === STORE.phone, 'phone value mismatch');
+        assert(await page.locator('[data-store-hours]').last().textContent() === hoursDisplay(), 'hours value mismatch');
+        assert(await page.locator('[data-store-address-value]').textContent() === addressDisplay(), 'address value mismatch');
       });
 
       await check('every button has an accessible name', async () => {

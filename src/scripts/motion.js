@@ -188,7 +188,7 @@ export function initParallax(el) {
 
 /* ---------------------------- atmospheric vapor ------------------------- */
 /**
- * Very slow, low-opacity vapor. Canvas 2D only — pre-rendered sprites, capped
+ * Rising, low-opacity vapor. Canvas 2D only — pre-rendered sprites, capped
  * frame rate, DPR cap, fewer particles on mobile, and fully disabled for
  * prefers-reduced-motion. Pauses when the tab is hidden or the hero is
  * off-screen.
@@ -211,20 +211,20 @@ export function initVapor(canvas) {
     sprite.height = size;
     const sctx = sprite.getContext('2d');
     const grad = sctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
-    grad.addColorStop(0, `${rgb}0.5)`);
-    grad.addColorStop(0.45, `${rgb}0.16)`);
+    grad.addColorStop(0, `${rgb}0.28)`);
+    grad.addColorStop(0.45, `${rgb}0.09)`);
     grad.addColorStop(1, `${rgb}0)`);
     sctx.fillStyle = grad;
     sctx.fillRect(0, 0, size, size);
     // Bake soft filaments once; animation frames only composite these sprites.
     sctx.lineCap = 'round';
-    for (let i = 0; i < 9; i += 1) {
+    for (let i = 0; i < 12; i += 1) {
       sctx.beginPath();
-      sctx.moveTo(12, 170 + i * 3);
-      sctx.bezierCurveTo(200, 205 - i * 7, 35, 75 + i * 5, 238, 65 + i * 4);
-      sctx.strokeStyle = `${rgb}0.12)`;
-      sctx.lineWidth = 5 + i * 2;
-      sctx.filter = 'blur(5px)';
+      sctx.moveTo(102 + i * 3, 254);
+      sctx.bezierCurveTo(18 + i * 6, 172, 226 - i * 5, 130, 104 + i * 3, 12);
+      sctx.strokeStyle = `${rgb}${0.12 + (i % 3) * 0.04})`;
+      sctx.lineWidth = 2 + i * 0.7;
+      sctx.filter = `blur(${2 + (i % 3)}px)`;
       sctx.stroke();
     }
     sctx.filter = 'none';
@@ -235,26 +235,27 @@ export function initVapor(canvas) {
   };
 
   const sprites = [
-    makeSprite('rgba(127,240,228,'),
-    makeSprite('rgba(124,108,255,'),
-    makeSprite('rgba(242,165,92,'),
+    makeSprite('rgba(160,208,212,'),
+    makeSprite('rgba(184,211,229,'),
+    makeSprite('rgba(215,193,164,'),
   ];
 
   let width = 1;
   let height = 1;
   const particles = [];
 
-  const spawn = (initial) => {
+  const spawn = (initial, index = 0) => {
     const roll = Math.random();
     const spriteIndex = roll < 0.62 ? 0 : roll < 0.9 ? 1 : 2;
     return {
       spriteIndex,
-      x: Math.random() * width,
-      y: initial ? Math.random() * height : height * (0.8 + Math.random() * 0.35),
-      r: (isMobile ? 70 : 95) + Math.random() * (isMobile ? 85 : 150),
-      alpha: 0.16 + Math.random() * 0.16,
-      vy: -(0.05 + Math.random() * 0.1),
-      drift: 0.35 + Math.random() * 0.75,
+      // Most wisps stay along the left edge; a few bridge the lower scene.
+      origin: index % 5 === 4 ? 0.43 + Math.random() * 0.1 : Math.random() * 0.12,
+      y: initial ? Math.random() * height : height * 1.16,
+      r: (isMobile ? 50 : 65) + Math.random() * (isMobile ? 45 : 80),
+      alpha: 0.3 + Math.random() * 0.2,
+      vy: -(7 + Math.random() * 7),
+      drift: 12 + Math.random() * 20,
       phase: Math.random() * Math.PI * 2,
       spin: 0.00018 + Math.random() * 0.00035,
     };
@@ -270,7 +271,7 @@ export function initVapor(canvas) {
   };
 
   resize();
-  for (let i = 0; i < COUNT; i += 1) particles.push(spawn(true));
+  for (let i = 0; i < COUNT; i += 1) particles.push(spawn(true, i));
 
   let running = true;
   let inView = true;
@@ -281,32 +282,35 @@ export function initVapor(canvas) {
   let last = 0;
   let elapsed = 0;
 
+  const paint = () => {
+    ctx.clearRect(0, 0, width, height);
+    ctx.globalCompositeOperation = 'lighter';
+    for (const p of particles) {
+      const x = p.origin * width + Math.sin(elapsed * p.spin + p.phase) * p.drift;
+      const topFade = Math.min(1, Math.max(0, (p.y + p.r) / (height * 0.3)));
+      const bottomFade = Math.min(1, Math.max(0, (height * 1.16 - p.y) / p.r));
+      ctx.globalAlpha = p.alpha * topFade * bottomFade;
+      ctx.drawImage(sprites[p.spriteIndex], x - p.r, p.y - p.r, p.r * 2, p.r * 2);
+    }
+
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
+  };
+
   const step = (time) => {
     rafId = window.requestAnimationFrame(step);
     if (!last) last = time;
     const delta = time - last;
     if (delta < FRAME_MS) return;
     last = time;
-    elapsed += delta;
-
-    ctx.clearRect(0, 0, width, height);
-    ctx.globalCompositeOperation = 'lighter';
-
-    for (const p of particles) {
-      p.y += p.vy * (delta / FRAME_MS) * 0.5;
-      p.x += Math.sin(elapsed * p.spin + p.phase) * p.drift * 0.35;
-
-      if (p.y + p.r < -20) {
-        Object.assign(p, spawn(false));
-      }
-
-      const fade = Math.min(1, Math.max(0, (p.y + p.r) / (height * 0.35)));
-      ctx.globalAlpha = p.alpha * fade;
-      ctx.drawImage(sprites[p.spriteIndex], p.x - p.r, p.y - p.r, p.r * 2, p.r * 2);
-    }
-
-    ctx.globalAlpha = 1;
-    ctx.globalCompositeOperation = 'source-over';
+    // A stalled frame must not teleport the plume. Velocity is pixels/second.
+    const dt = Math.min(delta, 100);
+    elapsed += dt;
+    particles.forEach((p, index) => {
+      p.y += p.vy * dt / 1000;
+      if (p.y + p.r < -20) Object.assign(p, spawn(false, index));
+    });
+    paint();
   };
 
   const start = () => {
@@ -350,10 +354,11 @@ export function initVapor(canvas) {
   window.addEventListener(
     'resize',
     () => {
+      const previousHeight = height;
       resize();
-      for (const p of particles) {
-        if (p.x > width) p.x = Math.random() * width;
-      }
+      for (const p of particles) p.y *= height / previousHeight;
+      // Keep a paused frame visible after a viewport change.
+      if (!motionPreference.matches) paint();
     },
     { passive: true },
   );

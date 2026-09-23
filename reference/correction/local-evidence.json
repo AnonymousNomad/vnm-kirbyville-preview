@@ -1,0 +1,24 @@
+{
+  "status": 200,
+  "version": "storefront-local-v4",
+  "geometry": {
+    ".hero__title": {
+      "x": 61.1875,
+      "y": 131.671875,
+      "width": 494.28125,
+      "height": 101.5625
+    },
+    ".hero__cta": {
+      "x": 61.1875,
+      "y": 334.390625,
+      "width": 494.28125,
+      "height": 53
+    },
+    ".location-panel": {
+      "x": 466.859375,
+      "y": 1188.03125,
+      "width": 345.0625,
+      "height": 165
+    }
+  }
+}

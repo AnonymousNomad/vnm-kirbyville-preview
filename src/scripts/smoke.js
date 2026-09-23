@@ -9,7 +9,7 @@
 import { readFileSync, existsSync, statSync } from 'node:fs';
 import { resolve, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, STORE, hasVerifiedPhone, canonicalUrl, robotsMeta } from '../data/store.js';
+import { SITE, STORE, hasVerifiedPhone, hasVerifiedAddress, contactHref, phoneDisplay, addressDisplay, hoursDisplay, localBusinessJsonLd, canonicalUrl, robotsMeta } from '../data/store.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const dist = join(root, 'dist');
@@ -129,9 +129,13 @@ check('JSON-LD parses and contains no unverified facts', () => {
   const data = JSON.parse(match[1]);
   assert(data['@type'] === 'LocalBusiness', 'expected LocalBusiness schema');
   assert(data.name === STORE.name, 'schema name mismatch');
-  assert(!data.address, 'schema contains an address but none is verified');
-  assert(!data.telephone, 'schema contains a telephone but none is verified');
-  assert(!data.openingHours, 'schema contains hours but none are verified');
+  assert(JSON.stringify(data) === JSON.stringify(localBusinessJsonLd(canonicalUrl())), 'schema differs from verified store data');
+  if (!hasVerifiedAddress()) assert(!data.address, 'schema contains an unverified address');
+  else assert(data.address?.streetAddress === STORE.streetAddress, 'verified address missing or incorrect');
+  if (!hasVerifiedPhone()) assert(!data.telephone, 'schema contains an unverified phone');
+  else assert(data.telephone === STORE.phone, 'verified phone missing or incorrect');
+  if (!STORE.hoursVerified) assert(!data.openingHours, 'schema contains unverified hours');
+  else assert(data.openingHours === STORE.hours, 'verified hours missing or incorrect');
   assert(data.areaServed?.name?.includes('Kirbyville'), 'schema areaServed missing Kirbyville');
 });
 check('sitemap.xml is well-formed with one URL', () => {
@@ -196,15 +200,32 @@ console.log('\nbusiness-fact safety');
 check('no fake tel: link while phone is unverified', () => {
   if (!hasVerifiedPhone()) {
     assert(!/href="tel:/.test(html), 'tel: link present but phone is unverified');
+  } else {
+    const phoneLinks = [...html.matchAll(/href="(tel:[^"]+)"/g)].map(m => m[1]);
+    assert(phoneLinks.length > 0 && phoneLinks.every(href => href === contactHref()), 'missing or incorrect verified tel link');
   }
 });
-check('phone slot renders honest fallback copy', () => {
-  if (!hasVerifiedPhone()) {
-    assert(html.includes('Call for current hours'), 'fallback copy missing');
-  }
+check('phone slot matches the verified value or honest fallback', () => {
+  assert(html.includes(phoneDisplay()), 'phone display missing from static HTML');
 });
 check('no invented street address', () => {
-  assert(!/\d+\s+\w+\s+(st|street|ave|avenue|rd|road|blvd|hwy|highway)\b/i.test(html), 'possible street address found');
+  const withoutKnownAddress = hasVerifiedAddress() ? html.split(STORE.streetAddress).join('') : html;
+  assert(!/\d+\s+(?:US-\d+|\w+\s+(?:st|street|ave|avenue|rd|road|blvd|hwy|highway)\b)/i.test(withoutKnownAddress), 'unrecognized street address found');
+  assert(html.includes(addressDisplay()), 'verified address or city fallback missing from static HTML');
+});
+check('hours display matches the verified data', () => {
+  assert(html.includes(hoursDisplay()), 'hours display missing from static HTML');
+});
+check('unverified facts remain omitted even when values are present', () => {
+  const original = { phoneVerified: STORE.phoneVerified, streetAddressVerified: STORE.streetAddressVerified, hoursVerified: STORE.hoursVerified };
+  try {
+    STORE.phoneVerified = STORE.streetAddressVerified = STORE.hoursVerified = false;
+    const unverified = localBusinessJsonLd(canonicalUrl());
+    assert(!unverified.address && !unverified.telephone && !unverified.openingHours, 'verification gates leak facts');
+    assert(contactHref() === '#contact', 'unverified phone is dialable');
+    assert(phoneDisplay() === 'Call for current hours', 'unverified phone display leaks');
+    assert(hoursDisplay() === 'Call for current hours', 'unverified hours display leaks');
+  } finally { Object.assign(STORE, original); }
 });
 check('no absolute pricing claims', () => {
   assert(!/lowest price|cheapest|guaranteed lowest/i.test(html), 'unsupported absolute claim found');
@@ -216,10 +237,12 @@ check('21+ notice present in footer', () => {
 check('preview attribution present', () => {
   assert(/unofficial design demonstration/i.test(html), 'preview attribution missing');
 });
-check('reviews are labelled as demo content', () => {
+check('review information is labelled and points to its external source', () => {
   const demos = (html.match(/data-demo="true"/g) ?? []).length;
   assert(demos >= 3, `expected >=3 demo-labelled review cards, found ${demos}`);
-  assert(/Awaiting verification/.test(html), 'review placeholder label missing');
+  assert(/Reviews on Google/.test(html), 'external review source label missing');
+  assert(html.includes('Review excerpts are not reproduced'), 'review reproduction status missing');
+  assert(html.includes(STORE.listingUrl), 'supplied Google listing link missing');
 });
 
 /* --------------------------- asset path integrity ------------------------ */

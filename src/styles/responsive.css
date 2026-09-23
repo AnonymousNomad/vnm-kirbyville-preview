@@ -1,7 +1,7 @@
 /* Exact desktop composition, then a deliberate mobile reading order. */
 .container { width:88.4%; max-width:1280px; padding-inline:0; }
-.site-header__bar { height:clamp(76px,8.2vw,112px); gap:20px; }
-.brand__name { font-size:clamp(36px,3.7vw,52px); letter-spacing:-1.8px; }
+.site-header__bar { height:clamp(70px,6.7vw,100px); gap:20px; }
+.brand__name { font-size:clamp(35px,3.6vw,52px); letter-spacing:-1.8px; }
 .brand__place { font-size:clamp(7px,.7vw,10px); letter-spacing:4px; margin-top:8px; }
 .site-nav__list { gap:clamp(22px,2.65vw,38px); }
 .site-nav a { font-size:clamp(11px,1vw,14px); }
@@ -9,6 +9,8 @@
 .place-badge small { font-size:8px; }
 .btn { min-height:52px; padding:9px 18px; font-size:14px; gap:12px; border-radius:10px; }
 .btn small { font-size:10px; margin-top:3px; }
+.hero__content>.hero__cta .btn:first-child { min-width:164px; }
+.hero__content>.hero__cta .btn:nth-child(2) { min-width:190px; }
 .status { font-size:10px; padding:7px 14px; }
 .site-footer { padding:20px 0 14px; }
 .site-footer__row { gap:20px; }
@@ -22,7 +24,7 @@
 @media(min-width:1500px) { .hero { min-height:632px; padding-top:160px; padding-bottom:68px; } .about { min-height:312px; } }
 @media(max-width:1199px) {
  .hero__cta { gap:14px; }
- .hero__lede { max-width:380px; }
+ .hero__lede { max-width:330px; }
  .facts-grid { width:87%; gap:16px; }
  .facts-grid article { padding-left:14px; }
  .facts-grid p { max-width:170px; }
@@ -47,6 +49,7 @@
  .hero .eyebrow { font-size:8px; letter-spacing:2px; }
  .hero__lede { font-size:15px; max-width:330px; }
  .hero__cta .btn { font-size:12px; padding:10px 12px; gap:8px; }
+ .hero__content>.hero__cta .btn:first-child,.hero__content>.hero__cta .btn:nth-child(2) { min-width:0; }
  .information__grid { gap:8px; }
  .info-card { padding:6px; border-radius:10px; }
  .info-card h3 { font-size:12px; }
@@ -70,7 +73,8 @@
  .brand__name { font-size:30px; letter-spacing:-1.3px; }
  .brand__place { font-size:7px; letter-spacing:3px; }
  .hero { min-height:630px; padding:112px 0 220px; }
- .hero__landscape { background-image:linear-gradient(180deg,#03101633 0%,#031016 58%,transparent 85%),url('/assets/hero-photo.webp'); background-size:auto,auto 100%; background-position:center,68% bottom; }
+ .hero__landscape { background-color:#031016; background-image:linear-gradient(180deg,#031016 0%,#031016f5 45%,#03101622 70%,#03101622),url('/assets/storefront-dusk.webp'); background-repeat:no-repeat; background-size:100% 100%,auto 50%; background-position:center,64% bottom; }
+ .landscape-band::before { background-size:100% 100%,auto 100%; background-position:center,70% center; background-image:linear-gradient(90deg,#07141bea,#07141bcc),url('/assets/kirbyville-sunset.webp'); }
  .hero__content { width:100%; }
  .hero__title { font-size:clamp(27px,8.1vw,47px); letter-spacing:-1.15px; line-height:1.06; }
  .hero .eyebrow { margin-bottom:12px; font-size:8px; letter-spacing:1.7px; }

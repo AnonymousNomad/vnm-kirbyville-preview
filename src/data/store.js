@@ -35,7 +35,7 @@ export const SITE = {
     'Location, contact details and verification status. For adults 21+.',
   ogImage: 'assets/og-image.png',
   ogImageAlt:
-    'Dark, neon-lit preview artwork for a Kirbyville, Texas vape and smoke shop website.',
+    'Vape N More Kirbyville business-information preview, for adults 21+.',
 };
 
 /**
@@ -48,15 +48,21 @@ export const STORE = {
   stateCode: 'TX',
   country: 'US',
 
-  // ---- Unverified fields (intentionally null until confirmed) ----
-  streetAddress: null,
-  streetAddressVerified: false,
-  postalCode: null,
-  postalCodeVerified: false,
-  phone: null,
-  phoneVerified: false,
-  hours: null,
-  hoursVerified: false,
+  // Listing and contact details transcribed by the user, 2026-09-23.
+  // Verification here means supplied/confirmed by the project owner, not a live API feed.
+  listingUrl: 'https://share.google/CHdy1QkwX52be3h7a',
+  factsSource: 'User-provided Google listing transcription, 2026-09-23',
+
+  streetAddress: '21034 US-96',
+  streetAddressVerified: true,
+  postalCode: '75956',
+  postalCodeVerified: true,
+  phone: '(409) 279-1126',
+  phoneVerified: true,
+  hours: 'Mo-Su 09:00-21:00',
+  hoursLabel: 'Daily, 9 AM–9 PM',
+  hoursVerified: true,
+  // ---- Unverified fields remain null ----
   reviewUrl: null,
   reviewUrlVerified: false,
   social: {
@@ -67,13 +73,10 @@ export const STORE = {
 
   // ---- Derived / policy-safe values ----
   /**
-   * Directions target. Until a street address is verified we use a Google Maps
-   * *search query* built only from the two verified facts (name + city/state).
-   * This is not an invented address or map pin; it resolves to whatever the
-   * real listing is. Marked as a search fallback so it can be swapped for a
-   * verified place link at launch.
+   * Search the supplied address without inventing geographic coordinates.
+   * directionsHref falls back to name/city if address verification is revoked.
    */
-  directionsKind: 'maps-search-fallback',
+  directionsKind: 'maps-address-search',
 };
 
 const MAPS_SEARCH = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
@@ -103,8 +106,13 @@ export function contactHref() {
   return hasVerifiedPhone() ? `tel:${STORE.phone.replace(/[^\d+]/g, '')}` : '#contact';
 }
 
-/** Directions target: verified place link when available, else maps search. */
+/** Directions target: supplied address when verified, otherwise name/city search. */
 export function directionsHref() {
+  if (hasVerifiedAddress()) {
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+      `${STORE.name}, ${STORE.streetAddress}, ${STORE.city}, ${STORE.stateCode} ${STORE.postalCode || ''}`.trim(),
+    )}`;
+  }
   return MAPS_SEARCH;
 }
 
@@ -124,7 +132,7 @@ export function addressDisplay() {
 
 /** Display string for the hours slot, honest about verification state. */
 export function hoursDisplay() {
-  return STORE.hoursVerified && STORE.hours ? STORE.hours : 'Call for current hours';
+  return STORE.hoursVerified && STORE.hours ? STORE.hoursLabel || STORE.hours : 'Call for current hours';
 }
 
 /**

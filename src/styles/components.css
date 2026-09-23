@@ -33,6 +33,8 @@
 .menu-toggle[aria-expanded=true] .menu-toggle__bars span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
 .status { display:inline-flex; align-items:center; gap:10px; padding:8px 16px; border:1px solid #52666c; border-radius:20px; color:#d2dfe0; font-size:12px; white-space:nowrap; }
 .status::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--accent-400); }
+.listing-link { display:inline-flex; align-items:center; gap:8px; min-height:44px; color:#89eed5; text-decoration:underline; text-underline-offset:4px; font-size:12px; }
+.review-card .listing-link { position:absolute; left:20px; bottom:8px; }
 .site-footer { padding:40px 0 24px; background:linear-gradient(110deg,#071319,#040b0e); border-top:1px solid #203437; }
 .site-footer__row { display:flex; justify-content:space-between; align-items:center; gap:32px; }
 .site-footer .brand__name { font-size:36px; }

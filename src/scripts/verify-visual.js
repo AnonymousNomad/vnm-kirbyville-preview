@@ -39,7 +39,35 @@ try {
     await page.close();
   }
   const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+  await page.addInitScript(() => {
+    // Observe actual canvas output without adding a production test interface.
+    window.__smokeFrame = [];
+    const originalClear = CanvasRenderingContext2D.prototype.clearRect;
+    const originalDraw = CanvasRenderingContext2D.prototype.drawImage;
+    CanvasRenderingContext2D.prototype.clearRect = function (...args) {
+      if (this.canvas.hasAttribute('data-vapor-canvas')) window.__smokeFrame = [];
+      return originalClear.apply(this, args);
+    };
+    CanvasRenderingContext2D.prototype.drawImage = function (...args) {
+      if (this.canvas.hasAttribute('data-vapor-canvas')) {
+        window.__smokeFrame.push({ x: args[1] + args[3] / 2, y: args[2] + args[4] / 2 });
+      }
+      return originalDraw.apply(this, args);
+    };
+  });
   await page.goto(url, { waitUntil: 'networkidle' });
+  const firstFrame = await page.evaluate(() => window.__smokeFrame);
+  assert(firstFrame.length > 0, 'Smoke produces visible draw calls');
+  await page.screenshot({ path: resolve(shots, 'smoke-start-1440.png') });
+  await page.waitForTimeout(3000);
+  const secondFrame = await page.evaluate(() => window.__smokeFrame);
+  assert.equal(secondFrame.length, firstFrame.length, 'Particle count stays bounded');
+  const rise = firstFrame.reduce((sum, p, i) => sum + p.y - secondFrame[i].y, 0) / firstFrame.length;
+  assert(rise > 12 && rise < 65, `Expected visible gradual upward travel, observed ${rise}px`);
+  assert(secondFrame.filter(p => p.x < 1440 / 3).length / secondFrame.length > 0.7, 'Most smoke stays near the left edge');
+  await page.screenshot({ path: resolve(shots, 'smoke-after-3s-1440.png') });
+  evidence.checks.push('Visible upward smoke travel', 'Left-edge smoke concentration');
+  evidence.smokeRisePixelsOver3s = Math.round(rise * 100) / 100;
   const snapshot = () => page.locator('[data-vapor-canvas]').evaluate(c => c.toDataURL());
   const toggle = page.locator('[data-motion-toggle]');
   await toggle.click();
@@ -49,6 +77,15 @@ try {
   await toggle.click();
   await page.waitForTimeout(400);
   assert.notEqual(await snapshot(), paused, 'Resume animates smoke');
+  await page.locator('#location').scrollIntoViewIfNeeded();
+  await page.waitForTimeout(200);
+  const offscreen = await snapshot();
+  await page.waitForTimeout(400);
+  assert.equal(await snapshot(), offscreen, 'Offscreen smoke suspends drawing');
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+  await page.waitForTimeout(400);
+  assert.notEqual(await snapshot(), offscreen, 'Visible smoke resumes drawing');
+  evidence.checks.push('Offscreen suspension and return');
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.waitForTimeout(100);
   assert(await toggle.isHidden(), 'Reduced motion hides redundant pause control');

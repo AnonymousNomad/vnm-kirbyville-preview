@@ -1,0 +1,134 @@
+{
+  "widths": [
+    320,
+    1055,
+    1920
+  ],
+  "checks": [
+    "Visible upward smoke travel",
+    "Left-edge smoke concentration",
+    "Offscreen suspension and return",
+    "Pause/resume",
+    "Live reduced-motion changes",
+    "Print reveals visible",
+    "Mobile navigation and static content without JavaScript",
+    "Escape restores mobile toggle focus"
+  ],
+  "measurements": {
+    "320": {
+      "width": 320,
+      "contentWidth": 320,
+      "height": 3433,
+      "sections": [
+        {
+          "id": "home",
+          "y": 0,
+          "height": 657
+        },
+        {
+          "id": "products",
+          "y": 657,
+          "height": 647
+        },
+        {
+          "id": "about",
+          "y": 1304,
+          "height": 409
+        },
+        {
+          "id": "reviews",
+          "y": 1714,
+          "height": 598
+        },
+        {
+          "id": "location",
+          "y": 2311,
+          "height": 540
+        },
+        {
+          "id": "footer",
+          "y": 2852,
+          "height": 582
+        }
+      ],
+      "headingLines": 2
+    },
+    "1055": {
+      "width": 1055,
+      "contentWidth": 1055,
+      "height": 1539,
+      "sections": [
+        {
+          "id": "home",
+          "y": 0,
+          "height": 444
+        },
+        {
+          "id": "products",
+          "y": 444,
+          "height": 283
+        },
+        {
+          "id": "about",
+          "y": 727,
+          "height": 219
+        },
+        {
+          "id": "reviews",
+          "y": 947,
+          "height": 220
+        },
+        {
+          "id": "location",
+          "y": 1167,
+          "height": 207
+        },
+        {
+          "id": "footer",
+          "y": 1374,
+          "height": 165
+        }
+      ],
+      "headingLines": 2
+    },
+    "1920": {
+      "width": 1920,
+      "contentWidth": 1920,
+      "height": 1968,
+      "sections": [
+        {
+          "id": "home",
+          "y": 0,
+          "height": 632
+        },
+        {
+          "id": "products",
+          "y": 632,
+          "height": 366
+        },
+        {
+          "id": "about",
+          "y": 998,
+          "height": 312
+        },
+        {
+          "id": "reviews",
+          "y": 1310,
+          "height": 238
+        },
+        {
+          "id": "location",
+          "y": 1548,
+          "height": 236
+        },
+        {
+          "id": "footer",
+          "y": 1785,
+          "height": 183
+        }
+      ],
+      "headingLines": 2
+    }
+  },
+  "smokeRisePixelsOver3s": 39.23
+}
