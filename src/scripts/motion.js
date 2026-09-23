@@ -101,7 +101,7 @@ export function initActiveNav(links) {
     const probe = window.scrollY + 140;
     let current = pairs[0];
     for (const pair of pairs) {
-      if (pair.section.offsetTop <= probe) current = pair;
+      if (pair.section.getBoundingClientRect().top + window.scrollY <= probe) current = pair;
     }
     if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
       current = pairs[pairs.length - 1];

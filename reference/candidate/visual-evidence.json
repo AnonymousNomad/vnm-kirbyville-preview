@@ -15,42 +15,37 @@
     "320": {
       "width": 320,
       "contentWidth": 320,
-      "height": 4209,
+      "height": 3439,
       "sections": [
         {
           "id": "home",
           "y": 0,
-          "height": 865
+          "height": 657
         },
         {
           "id": "products",
-          "y": 865,
-          "height": 733
+          "y": 657,
+          "height": 647
         },
         {
           "id": "about",
-          "y": 1598,
-          "height": 537
+          "y": 1304,
+          "height": 427
         },
         {
           "id": "reviews",
-          "y": 2134,
-          "height": 721
+          "y": 1732,
+          "height": 608
         },
         {
           "id": "location",
-          "y": 2855,
-          "height": 573
-        },
-        {
-          "id": "contact",
-          "y": 3428,
-          "height": 392
+          "y": 2340,
+          "height": 517
         },
         {
           "id": "footer",
-          "y": 3820,
-          "height": 389
+          "y": 2857,
+          "height": 582
         }
       ],
       "headingLines": 2
@@ -58,42 +53,37 @@
     "1055": {
       "width": 1055,
       "contentWidth": 1055,
-      "height": 1729,
+      "height": 1562,
       "sections": [
         {
           "id": "home",
           "y": 0,
-          "height": 460
+          "height": 444
         },
         {
           "id": "products",
-          "y": 460,
-          "height": 294
+          "y": 444,
+          "height": 287
         },
         {
           "id": "about",
-          "y": 754,
-          "height": 227
+          "y": 731,
+          "height": 219
         },
         {
           "id": "reviews",
-          "y": 981,
-          "height": 243
+          "y": 950,
+          "height": 224
         },
         {
           "id": "location",
-          "y": 1224,
-          "height": 231
-        },
-        {
-          "id": "contact",
-          "y": 1455,
-          "height": 120
+          "y": 1175,
+          "height": 215
         },
         {
           "id": "footer",
-          "y": 1575,
-          "height": 155
+          "y": 1390,
+          "height": 172
         }
       ],
       "headingLines": 2
@@ -101,42 +91,37 @@
     "1920": {
       "width": 1920,
       "contentWidth": 1920,
-      "height": 2254,
+      "height": 1983,
       "sections": [
         {
           "id": "home",
           "y": 0,
-          "height": 665
+          "height": 632
         },
         {
           "id": "products",
-          "y": 665,
-          "height": 376
+          "y": 632,
+          "height": 369
         },
         {
           "id": "about",
-          "y": 1041,
-          "height": 296
+          "y": 1001,
+          "height": 312
         },
         {
           "id": "reviews",
-          "y": 1337,
-          "height": 316
+          "y": 1313,
+          "height": 242
         },
         {
           "id": "location",
-          "y": 1653,
-          "height": 276
-        },
-        {
-          "id": "contact",
-          "y": 1929,
-          "height": 132
+          "y": 1555,
+          "height": 244
         },
         {
           "id": "footer",
-          "y": 2061,
-          "height": 192
+          "y": 1800,
+          "height": 183
         }
       ],
       "headingLines": 2

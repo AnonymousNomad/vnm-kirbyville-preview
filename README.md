@@ -2,8 +2,7 @@
 
 [View the live website preview](https://anonymousnomad.github.io/vnm-kirbyville-preview/)
 
-The live link shows the current GitHub Pages deployment from `main`. The visual
-reconstruction on this candidate branch is awaiting review and is not deployed yet.
+The live link shows the current GitHub Pages deployment from `main`.
 
 A factual, age-restricted business-information preview. Semantic HTML, custom CSS,
 vanilla JavaScript and Vite; no ecommerce, backend, offers or inventory claims.
@@ -11,16 +10,15 @@ vanilla JavaScript and Vite; no ecommerce, backend, offers or inventory claims.
 This is an unofficial design demonstration. Indexing stays disabled through
 `noindex,nofollow` and a disallow-all robots file. It is not an authorized business website.
 
-## Candidate for review
+## Reference reconstruction
 
-Branch: `work/visual-reconstruction`, based on
-`072ca503bedf20060a20e86ab22c729e054aa4c5`.
+Originally developed on `work/visual-reconstruction` from
+`072ca503bedf20060a20e86ab22c729e054aa4c5`; publication to the existing live URL
+was explicitly authorized by the user on September 23, 2026.
 
 The supplied [approved homepage](reference/approved-homepage.png) is the visual authority.
 See [the reconstruction report](reference/RECONSTRUCTION.md) for the visual decisions,
-verification evidence and remaining differences. Candidate pushes do not trigger the
-Pages workflow, which is limited to pushes on main. Do not merge or dispatch deployment
-until the candidate has been reviewed.
+verification evidence and remaining differences. The Pages workflow deploys pushes to main.
 
 ## Run and verify
 
@@ -54,7 +52,7 @@ The user's report of a Facebook page is not sufficient to invent its URL.
 - src/styles/: tokens, shared styles, section composition and responsive layouts.
 - src/scripts/main.js: verified business-data hydration and enhancement boot.
 - src/scripts/motion.js: menu, reveals and slow, fading canvas atmosphere.
-- public/assets/east-texas-landscape.svg: original decorative regional illustration.
+- public/assets/*-photo.webp: generated photographic atmosphere and card artwork.
 - src/assets/og-template.html: factual social-preview source.
 - vite.config.js: existing token replacement, Pages base and indexing assets.
 - .github/workflows/deploy-pages.yml: existing main-only Pages deployment.
