@@ -1,5 +1,10 @@
 # Vape N More — Kirbyville preview
 
+[View the live website preview](https://anonymousnomad.github.io/vnm-kirbyville-preview/)
+
+The live link shows the current GitHub Pages deployment from `main`. The visual
+reconstruction on this candidate branch is awaiting review and is not deployed yet.
+
 A factual, age-restricted business-information preview. Semantic HTML, custom CSS,
 vanilla JavaScript and Vite; no ecommerce, backend, offers or inventory claims.
 
